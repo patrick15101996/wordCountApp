@@ -2,10 +2,10 @@ package interfaces;
 
 import java.util.List;
 
-public interface WordFrequencyAnalyzer {
+public interface IWordFrequencyAnalyzer {
     int calculateHighestFrequency(String text);
 
     int calculateFrequencyForWord(String text, String word);
 
-    List<WordFrequency> calculateMostFrequentNWords(String text, int n);
+    List<IWordFrequency> calculateMostFrequentNWords(String text, int n);
 }
