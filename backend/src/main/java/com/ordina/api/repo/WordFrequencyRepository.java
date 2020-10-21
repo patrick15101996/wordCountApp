@@ -2,14 +2,12 @@ package com.ordina.api.repo;
 
 import java.util.List;
 
-import javax.xml.ws.http.HTTPException;
-
 import com.ordina.api.interfaces.IWordFrequency;
 import com.ordina.api.interfaces.IWordFrequencyAnalyzer;
 import com.ordina.api.interfaces.IWordFrequencyRepository;
 import com.ordina.api.models.WordFrequencyRequest;
+import com.ordina.api.models.WordFrequencyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
@@ -24,28 +22,32 @@ public class WordFrequencyRepository implements IWordFrequencyRepository {
 
     @Override
     public ResponseEntity calculateHighestFrequency(WordFrequencyRequest wordFrequencyRequest) {
-        checkRequestIntegrity(wordFrequencyRequest);
+        if (isRequestErroneous(wordFrequencyRequest)) {
+            return ResponseEntity.unprocessableEntity().body(new WordFrequencyResponse("failed"));
+        }
         int highestFrequency = wordFrequencyAnalyzer.calculateHighestFrequency(wordFrequencyRequest.getSentence());
-        return ResponseEntity.ok(highestFrequency);
+        return ResponseEntity.ok(new WordFrequencyResponse("success", highestFrequency));
     }
 
     @Override
     public ResponseEntity calculateFrequencyForWord(WordFrequencyRequest wordFrequencyRequest) {
-        checkRequestIntegrity(wordFrequencyRequest);
+        if (isRequestErroneous(wordFrequencyRequest)) {
+            return ResponseEntity.unprocessableEntity().body(new WordFrequencyResponse("failed"));
+        }
         int highestFrequencyForWord = wordFrequencyAnalyzer.calculateFrequencyForWord(wordFrequencyRequest.getSentence(), wordFrequencyRequest.getWord());
-        return ResponseEntity.ok(highestFrequencyForWord);
+        return ResponseEntity.ok(new WordFrequencyResponse("success", highestFrequencyForWord));
     }
 
     @Override
     public ResponseEntity calculateMostFrequentNWords(WordFrequencyRequest wordFrequencyRequest) {
-        checkRequestIntegrity(wordFrequencyRequest);
+        if (isRequestErroneous(wordFrequencyRequest)) {
+            return ResponseEntity.unprocessableEntity().body(new WordFrequencyResponse("failed"));
+        }
         List<IWordFrequency> wordFrequencies = wordFrequencyAnalyzer.calculateMostFrequentNWords(wordFrequencyRequest.getSentence(), wordFrequencyRequest.getN());
-        return ResponseEntity.ok(wordFrequencies);
+        return ResponseEntity.ok(new WordFrequencyResponse("success", wordFrequencies));
     }
 
-    private void checkRequestIntegrity(WordFrequencyRequest wordFrequencyRequest) {
-        if (wordFrequencyRequest == null) {
-            throw new HTTPException(HttpStatus.UNPROCESSABLE_ENTITY.value());
-        }
+    private boolean isRequestErroneous(WordFrequencyRequest wordFrequencyRequest) {
+        return wordFrequencyRequest == null || wordFrequencyRequest.isEmpty();
     }
 }
