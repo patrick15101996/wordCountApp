@@ -1,6 +1,12 @@
 # Compiled class file
 *.class
 
+#Java specifics
+.classpath
+.project
+.settings/
+target/
+
 # Log file
 *.log
 
