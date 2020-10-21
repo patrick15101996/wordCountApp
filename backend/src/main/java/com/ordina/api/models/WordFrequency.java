@@ -1,6 +1,6 @@
-package models;
+package com.ordina.api.models;
 
-import interfaces.IWordFrequency;
+import com.ordina.api.interfaces.IWordFrequency;
 
 public class WordFrequency implements IWordFrequency, Comparable {
     private String word;

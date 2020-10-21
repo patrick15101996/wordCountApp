@@ -1,4 +1,4 @@
-package utils;
+package com.ordina.api.utils;
 
 import java.util.stream.Stream;
 

@@ -1,4 +1,4 @@
-package interfaces;
+package com.ordina.api.interfaces;
 
 public interface IWordFrequency extends Comparable {
     String getWord();

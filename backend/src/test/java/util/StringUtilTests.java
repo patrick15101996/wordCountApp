@@ -1,7 +1,7 @@
 package util;
 
+import com.ordina.api.utils.StringUtil;
 import org.junit.Test;
-import utils.StringUtil;
 import static org.junit.Assert.*;
 
 public class StringUtilTests {

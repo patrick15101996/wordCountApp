@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import interfaces.IWordFrequency;
-import interfaces.IWordFrequencyAnalyzer;
-import models.WordFrequency;
-import models.WordFrequencyAnalyzer;
+import com.ordina.api.interfaces.IWordFrequency;
+import com.ordina.api.interfaces.IWordFrequencyAnalyzer;
+import com.ordina.api.models.WordFrequency;
+import com.ordina.api.services.WordFrequencyAnalyzer;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
