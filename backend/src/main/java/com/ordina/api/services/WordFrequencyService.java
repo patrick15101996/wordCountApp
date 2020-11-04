@@ -10,14 +10,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.ordina.api.interfaces.IWordFrequency;
-import com.ordina.api.interfaces.IWordFrequencyAnalyzer;
+import com.ordina.api.interfaces.IWordFrequencyService;
 import com.ordina.api.models.WordFrequency;
 import com.ordina.api.utils.StringUtil;
 import org.springframework.stereotype.Service;
 import static java.util.Collections.frequency;
 
 @Service
-public class WordFrequencyAnalyzer implements IWordFrequencyAnalyzer {
+public class WordFrequencyService implements IWordFrequencyService {
     @Override
     public int calculateHighestFrequency(String sentence) {
         if (!StringUtil.isEmptyOrNull(sentence)) {

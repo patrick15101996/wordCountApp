@@ -2,9 +2,9 @@ package com.ordina.api.models;
 
 import com.ordina.api.interfaces.IWordFrequency;
 
-public class WordFrequency implements IWordFrequency, Comparable {
-    private String word;
-    private int frequency;
+public class WordFrequency implements IWordFrequency {
+    private final String word;
+    private final int frequency;
 
     public WordFrequency(String word, int frequency) {
         this.word = word;
@@ -34,14 +34,10 @@ public class WordFrequency implements IWordFrequency, Comparable {
     }
 
     @Override
-    public int compareTo(Object object) {
-        if (object instanceof IWordFrequency) {
-            IWordFrequency wordFrequency = (IWordFrequency) object;
-            if (wordFrequency.getFrequency() > frequency) {
-                return 1;
-            }
-            return word.compareToIgnoreCase(wordFrequency.getWord());
+    public int compareTo(IWordFrequency iWordFrequency) {
+        if (iWordFrequency.getFrequency() > frequency) {
+            return 1;
         }
-        throw new IllegalArgumentException();
+        return word.compareToIgnoreCase(iWordFrequency.getWord());
     }
 }

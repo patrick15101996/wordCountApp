@@ -2,6 +2,7 @@ package com.ordina.api.interfaces;
 
 
 import com.ordina.api.models.WordFrequencyRequest;
+import com.ordina.api.models.WordFrequencyResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public interface IWordFrequencyAnalyzerController {
 
     @PostMapping("calculateHighestFrequency")
-    ResponseEntity calculateHighestFrequency(@RequestBody WordFrequencyRequest wordFrequencyRequest);
+    ResponseEntity<WordFrequencyResponse> calculateHighestFrequency(@RequestBody WordFrequencyRequest wordFrequencyRequest);
 
     @PostMapping("calculateFrequencyForWord")
-    ResponseEntity calculateFrequencyForWord(@RequestBody WordFrequencyRequest wordFrequencyRequest);
+    ResponseEntity<WordFrequencyResponse> calculateFrequencyForWord(@RequestBody WordFrequencyRequest wordFrequencyRequest);
 
     @PostMapping("calculateMostFrequentNWords")
-    ResponseEntity calculateMostFrequentNWords(@RequestBody WordFrequencyRequest wordFrequencyRequest);
+    ResponseEntity<WordFrequencyResponse> calculateMostFrequentNWords(@RequestBody WordFrequencyRequest wordFrequencyRequest);
 }
